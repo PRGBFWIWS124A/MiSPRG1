@@ -5,8 +5,11 @@ import com.sun.source.tree.WhileLoopTree;
 
 public class Battleship {
     public static int  SIZE = 10;
-    public static void main(String args[]) {
 
+
+
+    public static void main(String args[]) {
+System.out.println(isValidCoordinate("j10"));
 
     }
 
@@ -19,11 +22,8 @@ static Coordinate getRandomCoordinate(){
     }
 
     static boolean onOneLine(final Coordinate start, final Coordinate end) {
-        if (start.row() == end.row() || start.column() == end.column()) {
-            return true;
-        } else {
-            return false;
-        }
+        return(start.row() == end.row() || start.column() == end.column());
+
     }
 
 
@@ -67,13 +67,22 @@ static int getMaxSurroundingColumn(final Coordinate start, final Coordinate end)
     static int getMinSurroundingRow(final Coordinate start, final Coordinate end){
     if (start.row()<=end.row() && start.row() > 0){
         return(start.row()-1);
-    }else if (end.row() > 0);
+    }else if(end.row() > 0);
     return(0);
     }
 
+ static Coordinate toCoordinate(final String input){String inputString = input.toUpperCase();
+    char firstCoordinate = inputString.charAt(0);
+    int collumn = (int)firstCoordinate-65;
+    int row = Integer.parseInt(String.valueOf(input.charAt(1)))-1;
+return new Coordinate(collumn,row);
+    }
 
-
-
+static boolean isValidCoordinate(final String input){
+    String regex ="^[A-Ja-j]([1-9]|10)";
+        boolean isValid=input.matches(regex);
+        return (isValid);
+}
 
 
 
